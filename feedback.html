@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="D277.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="warriors">Contact Us</h1>
+
+        <form id="contactForm">
+            <div class="form-field">
+                <label for="firstName"></label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="lastName"></label>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="email"></label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-field">
+                <label for="confirmEmail"></label>
+                <input type="email" id="confirmEmail" name="confirmEmail" placeholder="Confirm your email address" required>
+                <div id="emailError" class="error-message">Email addresses do not match</div>
+            </div>
+
+            <div class="form-field">
+                <label for="question"></label>
+                <textarea id="question" name="question" placeholder="Type your question here" required></textarea>
+            </div>
+        </form>
+    </div>
+    <button class = 'form-field'>
+        Submit
+    </button>
+    <script>
+        const emailInput = document.getElementById('email');
+        const confirmEmailInput = document.getElementById('confirmEmail');
+        const errorMessage = document.getElementById('emailError');
+
+        function verifyEmails() {
+            const email = emailInput.value;
+            const confirmEmail = confirmEmailInput.value;
+
+            if (confirmEmail) {
+                if (email !== confirmEmail) {
+                    errorMessage.style.display = 'block';
+                    confirmEmailInput.setCustomValidity('Emails do not match');
+                } else {
+                    errorMessage.style.display = 'none';
+                    confirmEmailInput.setCustomValidity('');
+                }
+            }
+        }
+
+        emailInput.addEventListener('input', verifyEmails);
+        confirmEmailInput.addEventListener('input', verifyEmails);
+    </script>
+</body>
+</html>
